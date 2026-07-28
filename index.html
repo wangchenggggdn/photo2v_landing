@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>photo2v — Still photos, motion video</title>
+    <meta
+      name="description"
+      content="photo2v turns everyday photos into short motion clips. Upload a still, animate it, and share in seconds."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://wangchenggggdn.github.io/photo2v_landing/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="photo2v" />
+    <meta property="og:title" content="photo2v — Still photos, motion video" />
+    <meta
+      property="og:description"
+      content="photo2v turns everyday photos into short motion clips. Upload a still, animate it, and share in seconds."
+    />
+    <meta
+      property="og:url"
+      content="https://wangchenggggdn.github.io/photo2v_landing/"
+    />
+    <meta
+      property="og:image"
+      content="https://wangchenggggdn.github.io/photo2v_landing/assets/hero/wide.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="photo2v — Still photos, motion video" />
+    <meta
+      name="twitter:description"
+      content="photo2v turns everyday photos into short motion clips. Upload a still, animate it, and share in seconds."
+    />
+    <meta
+      name="twitter:image"
+      content="https://wangchenggggdn.github.io/photo2v_landing/assets/hero/wide.jpg"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" as="image" href="./assets/hero/narrow.jpg" media="(max-width: 767px)" />
+    <link rel="preload" as="image" href="./assets/hero/wide.jpg" media="(min-width: 768px)" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- Entry gate (first viewport) -->
+      <section id="gate" class="gate" aria-label="Enter photo2v">
+        <div class="gate__media" aria-hidden="true">
+          <div class="gate__bg gate__bg--desktop"></div>
+          <div class="gate__bg gate__bg--mobile"></div>
+          <div class="gate__veil"></div>
+          <div class="gate__grain"></div>
+        </div>
+
+        <div class="gate__frame" aria-hidden="true">
+          <span class="gate__corner gate__corner--tl"></span>
+          <span class="gate__corner gate__corner--tr"></span>
+          <span class="gate__corner gate__corner--bl"></span>
+          <span class="gate__corner gate__corner--br"></span>
+        </div>
+
+        <div class="gate__content">
+          <p class="gate__brand animate-rise">
+            <span class="gate__brand-main">photo</span><span class="gate__brand-accent">2v</span>
+          </p>
+          <h1 class="gate__headline animate-rise animate-rise--delay-1">
+            Still photos become motion.
+          </h1>
+          <p class="gate__lede animate-rise animate-rise--delay-2">
+            Animate a single frame into a short cinematic clip — then keep creating.
+          </p>
+          <button id="enter-btn" type="button" class="gate__cta animate-rise animate-rise--delay-3">
+            Start creating
+          </button>
+          <p class="gate__legal animate-rise animate-rise--delay-4">
+            By continuing you agree to our
+            <a id="terms-link" href="#" target="_blank" rel="noopener noreferrer">Terms</a>
+            and
+            <a id="privacy-link" href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>,
+            and confirm you are in a private setting.
+          </p>
+        </div>
+      </section>
+
+      <!-- Marketing shell (visible briefly / after enter; crawlers see full HTML) -->
+      <div id="shell" class="shell is-blurred">
+        <header class="shell__nav">
+          <div class="shell__logo">
+            <span>photo</span><span class="shell__logo-accent">2v</span>
+          </div>
+          <a id="shell-cta" class="shell__nav-cta" href="#">Open studio</a>
+        </header>
+
+        <main class="shell__hero">
+          <h2 class="shell__title">From one photo to a moving scene.</h2>
+          <p class="shell__copy">
+            photo2v is built for quick photo-to-video: upload, animate, download.
+          </p>
+        </main>
+
+        <section class="shell__strip" aria-label="What you get">
+          <article>
+            <h3>Frame to clip</h3>
+            <p>Turn a still into a short motion sequence without a timeline editor.</p>
+          </article>
+          <article>
+            <h3>Template motion</h3>
+            <p>Start from ready motion recipes, then tweak the feel of the shot.</p>
+          </article>
+          <article>
+            <h3>Share-ready</h3>
+            <p>Export clips sized for social — keep the source attribution intact.</p>
+          </article>
+        </section>
+
+        <footer class="shell__footer">
+          <span>&copy; <span id="year"></span> photo2v</span>
+          <a id="footer-privacy" href="#" target="_blank" rel="noopener noreferrer">Privacy</a>
+          <a id="footer-terms" href="#" target="_blank" rel="noopener noreferrer">Terms</a>
+        </footer>
+      </div>
+    </div>
+
+    <script src="./js/app.js" defer></script>
+  </body>
+</html>
