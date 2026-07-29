@@ -53,10 +53,12 @@ a:hover {
   position: fixed;
   inset: 0;
   z-index: 40;
-  display: grid;
-  place-items: end stretch;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
   min-height: 100dvh;
   overflow: hidden;
+  background: var(--ink);
 }
 
 .gate.is-gone {
@@ -71,31 +73,31 @@ a:hover {
   overflow: hidden;
 }
 
-.gate__bg {
+.gate__img {
   position: absolute;
   inset: 0;
-  background-position: center;
-  background-size: cover;
-  transform: scale(1.08);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.06);
   animation: kenburns 18s ease-in-out infinite alternate;
-  filter: saturate(0.92) contrast(1.05);
+  /* Do NOT combine filter + transform on the same layer — can black out bg in Safari/WebKit */
 }
 
-.gate__bg--desktop {
+.gate__img--desktop {
   display: none;
-  background-image: url("../assets/hero/wide.jpg");
 }
 
-.gate__bg--mobile {
+.gate__img--mobile {
   display: block;
-  background-image: url("../assets/hero/narrow.jpg");
 }
 
 @media (min-width: 768px) {
-  .gate__bg--desktop {
+  .gate__img--desktop {
     display: block;
   }
-  .gate__bg--mobile {
+  .gate__img--mobile {
     display: none;
   }
 }
@@ -116,8 +118,7 @@ a:hover {
 .gate__grain {
   position: absolute;
   inset: 0;
-  opacity: 0.18;
-  mix-blend-mode: overlay;
+  opacity: 0.14;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 }
@@ -173,16 +174,11 @@ a:hover {
   width: min(40rem, 100%);
   padding:
     0 max(1.25rem, env(safe-area-inset-right))
-    max(1.75rem, env(safe-area-inset-bottom))
+    max(2rem, calc(env(safe-area-inset-bottom) + 1.5rem))
     max(1.25rem, env(safe-area-inset-left));
-  padding-bottom: max(2rem, calc(env(safe-area-inset-bottom) + 1.5rem));
 }
 
 @media (min-width: 768px) {
-  .gate {
-    place-items: end start;
-  }
-
   .gate__content {
     padding-left: clamp(2rem, 6vw, 5rem);
     padding-bottom: clamp(2.5rem, 7vh, 4.5rem);
@@ -265,23 +261,20 @@ a:hover {
   color: var(--foam-faint);
 }
 
-/* —— Shell —— */
+/* —— Shell (kept for markup; hidden for normal + crawler paint) —— */
 .shell {
+  display: none;
+}
+
+.shell.is-visible {
+  display: flex;
   position: relative;
   z-index: 1;
   min-height: 100svh;
-  display: flex;
   flex-direction: column;
   background:
     radial-gradient(80% 50% at 10% 0%, rgba(184, 242, 58, 0.08), transparent 50%),
     linear-gradient(180deg, var(--ink-soft), var(--ink));
-  transition: filter 0.4s ease;
-}
-
-.shell.is-blurred {
-  filter: blur(10px) saturate(0.7);
-  pointer-events: none;
-  user-select: none;
 }
 
 .shell__nav {
@@ -316,11 +309,6 @@ a:hover {
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: 600;
-}
-
-.shell__nav-cta:hover {
-  border-color: var(--lime);
-  color: var(--lime);
 }
 
 .shell__hero {
@@ -358,9 +346,8 @@ a:hover {
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 1.25rem 3rem;
+  padding: 2rem 1.25rem 3rem;
   border-top: 1px solid rgba(238, 246, 240, 0.08);
-  padding-top: 2rem;
 }
 
 @media (min-width: 768px) {
@@ -432,10 +419,10 @@ a:hover {
 
 @keyframes kenburns {
   from {
-    transform: scale(1.08) translate3d(0, 0, 0);
+    transform: scale(1.06) translate3d(0, 0, 0);
   }
   to {
-    transform: scale(1.14) translate3d(-1.5%, -1%, 0);
+    transform: scale(1.12) translate3d(-1.2%, -0.8%, 0);
   }
 }
 
@@ -450,7 +437,7 @@ a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gate__bg,
+  .gate__img,
   .gate__cta,
   .animate-rise {
     animation: none !important;

@@ -12,7 +12,7 @@
       content="photo2v turns everyday photos into short motion clips. Upload a still, animate it, and share in seconds."
     />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://wangchenggggdn.github.io/photo2v_landing/" />
+    <link rel="canonical" href="https://photo2v.space/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
@@ -22,14 +22,8 @@
       property="og:description"
       content="photo2v turns everyday photos into short motion clips. Upload a still, animate it, and share in seconds."
     />
-    <meta
-      property="og:url"
-      content="https://wangchenggggdn.github.io/photo2v_landing/"
-    />
-    <meta
-      property="og:image"
-      content="https://wangchenggggdn.github.io/photo2v_landing/assets/hero/wide.jpg"
-    />
+    <meta property="og:url" content="https://photo2v.space/" />
+    <meta property="og:image" content="https://photo2v.space/assets/hero/wide.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
@@ -39,10 +33,39 @@
       name="twitter:description"
       content="photo2v turns everyday photos into short motion clips. Upload a still, animate it, and share in seconds."
     />
-    <meta
-      name="twitter:image"
-      content="https://wangchenggggdn.github.io/photo2v_landing/assets/hero/wide.jpg"
-    />
+    <meta name="twitter:image" content="https://photo2v.space/assets/hero/wide.jpg" />
+
+    <!-- Critical first-paint styles: avoid FOUC before css/styles.css -->
+    <style>
+      html, body { margin: 0; background: #0a100e; color: #eef6f0; }
+      .gate {
+        position: fixed; inset: 0; z-index: 40;
+        display: flex; align-items: flex-end;
+        min-height: 100dvh; overflow: hidden;
+        background: #0a100e;
+      }
+      .gate__media { position: absolute; inset: 0; }
+      .gate__media img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover; object-position: center;
+      }
+      .gate__media .gate__img--desktop { display: none; }
+      @media (min-width: 768px) {
+        .gate__media .gate__img--desktop { display: block; }
+        .gate__media .gate__img--mobile { display: none; }
+      }
+      .gate__veil {
+        position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(10,16,14,.28), rgba(10,16,14,.55) 45%, rgba(10,16,14,.94));
+      }
+      .gate__content {
+        position: relative; z-index: 2;
+        width: min(40rem, 100%);
+        padding: 0 1.25rem max(2rem, env(safe-area-inset-bottom));
+      }
+      .shell { display: none; }
+    </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -56,11 +79,26 @@
   </head>
   <body>
     <div class="page">
-      <!-- Entry gate (first viewport) -->
       <section id="gate" class="gate" aria-label="Enter photo2v">
         <div class="gate__media" aria-hidden="true">
-          <div class="gate__bg gate__bg--desktop"></div>
-          <div class="gate__bg gate__bg--mobile"></div>
+          <img
+            class="gate__img gate__img--desktop"
+            src="./assets/hero/wide.jpg"
+            alt=""
+            width="1600"
+            height="900"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <img
+            class="gate__img gate__img--mobile"
+            src="./assets/hero/narrow.jpg"
+            alt=""
+            width="900"
+            height="1600"
+            decoding="async"
+            fetchpriority="high"
+          />
           <div class="gate__veil"></div>
           <div class="gate__grain"></div>
         </div>
@@ -95,8 +133,7 @@
         </div>
       </section>
 
-      <!-- Marketing shell (visible briefly / after enter; crawlers see full HTML) -->
-      <div id="shell" class="shell is-blurred">
+      <div id="shell" class="shell is-blurred" hidden>
         <header class="shell__nav">
           <div class="shell__logo">
             <span>photo</span><span class="shell__logo-accent">2v</span>

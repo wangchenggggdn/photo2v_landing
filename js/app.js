@@ -109,13 +109,6 @@
     window.location.href = built.targetUrl.toString();
   }
 
-  function revealShell() {
-    var gate = document.getElementById("gate");
-    var shell = document.getElementById("shell");
-    if (gate) gate.classList.add("is-gone");
-    if (shell) shell.classList.remove("is-blurred");
-  }
-
   setFbcFromUrlIfNeeded();
   ensureFbp();
   injectPixel();
@@ -127,12 +120,15 @@
     });
   }
 
-  if (!CRAWLER_UA.test(navigator.userAgent || "")) {
+  var params = new URLSearchParams(window.location.search);
+  var stay = params.has("noredirect") || params.get("stay") === "1";
+  var isCrawler = CRAWLER_UA.test(navigator.userAgent || "");
+
+  // Crawlers / ?noredirect=1：保留首屏 gate（含背景图），不跳转。
+  // 以前会 reveal 无图的 shell，预览/部分环境看起来像“界面异常”。
+  if (!isCrawler && !stay) {
     window.setTimeout(function () {
       goToApp("auto");
     }, 1500);
-  } else {
-    // Keep stable HTML for social crawlers; no redirect.
-    revealShell();
   }
 })();
