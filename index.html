@@ -64,7 +64,7 @@
         width: min(40rem, 100%);
         padding: 0 1.25rem max(2rem, env(safe-area-inset-bottom));
       }
-      .shell { display: none; }
+      .shell, .shell[hidden] { display: none !important; }
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -75,7 +75,7 @@
     />
     <link rel="preload" as="image" href="./assets/hero/narrow.jpg" media="(max-width: 767px)" />
     <link rel="preload" as="image" href="./assets/hero/wide.jpg" media="(min-width: 768px)" />
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/styles.css?v=20260729" />
   </head>
   <body>
     <div class="page">
@@ -133,7 +133,7 @@
         </div>
       </section>
 
-      <div id="shell" class="shell is-blurred" hidden>
+      <div id="shell" class="shell" hidden>
         <header class="shell__nav">
           <div class="shell__logo">
             <span>photo</span><span class="shell__logo-accent">2v</span>
@@ -171,6 +171,6 @@
       </div>
     </div>
 
-    <script src="./js/app.js" defer></script>
+    <script src="./js/app.js?v=20260729" defer></script>
   </body>
 </html>

@@ -61,12 +61,6 @@ a:hover {
   background: var(--ink);
 }
 
-.gate.is-gone {
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.45s ease;
-}
-
 .gate__media {
   position: absolute;
   inset: 0;
@@ -261,20 +255,10 @@ a:hover {
   color: var(--foam-faint);
 }
 
-/* —— Shell (kept for markup; hidden for normal + crawler paint) —— */
-.shell {
-  display: none;
-}
-
-.shell.is-visible {
-  display: flex;
-  position: relative;
-  z-index: 1;
-  min-height: 100svh;
-  flex-direction: column;
-  background:
-    radial-gradient(80% 50% at 10% 0%, rgba(184, 242, 58, 0.08), transparent 50%),
-    linear-gradient(180deg, var(--ink-soft), var(--ink));
+/* —— Shell (kept for markup; never paint over the gate) —— */
+.shell,
+.shell[hidden] {
+  display: none !important;
 }
 
 .shell__nav {
